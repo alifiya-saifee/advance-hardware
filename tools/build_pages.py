@@ -139,7 +139,8 @@ HOME_LD = '''  <script type="application/ld+json">
    "telephone": "+971506789646", "image": "media/og.jpg",
    "address": {"@type": "PostalAddress", "streetAddress": "Shop No. 2, near ADCB Bank, J & P Road, Industrial Area 2", "addressLocality": "Sharjah", "addressCountry": "AE"},
    "areaServed": ["Sharjah", "Dubai"], "knowsLanguage": ["ar", "en", "hi", "ur"],
-   "sameAs": ["https://www.google.com/maps/search/?api=1&query=Advance%20Hardware%20LLC%20Industrial%20Area%202%20Sharjah"],
+   "sameAs": ["https://maps.google.com/?cid=1551431354454962109"], "hasMap": "https://maps.google.com/?cid=1551431354454962109",
+   "geo": {"@type": "GeoCoordinates", "latitude": 25.3197832, "longitude": 55.4054299},
    "openingHoursSpecification": OPENING_HOURS}
   </script>
   <link rel="preload" as="image" type="image/webp" href="media/hero-m-540.webp" imagesrcset="media/hero-m-540.webp 540w, media/hero-m-1080.webp 1080w" imagesizes="100vw" media="(max-width: 719px)">

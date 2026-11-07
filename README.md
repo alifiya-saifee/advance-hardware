@@ -17,8 +17,7 @@ Add `?lang=ar` to any address to open the Arabic version, for example `products.
 3. **Photos**: the photos are free-licence images from Wikimedia Commons (credited on `credits.html` and in
    `docs/image-credits.md`; the credits page must stay online while they are used). Replace them with our own stock
    photos when ready (`docs/photo-shot-list.md`), using the same look (`docs/image-recipe.md`).
-4. **Google link**: put your Google Maps share link in `googleUrl` at the top of `assets/app.js`
-   (and in `sameAs` in `tools/build_pages.py`, then run it).
+4. **Google link**: done. The profile is `https://maps.google.com/?cid=1551431354454962109` (`googleUrl` and `geo` in `assets/app.js`).
 5. **Reviews**: paste 2–3 real Google reviews into `data/reviews.json`, word for word, then run `python3 tools/build_pages.py`.
    Never write our own. Format (one entry per review; `lang` is `en` or `ar`):
    ```json

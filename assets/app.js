@@ -11,8 +11,8 @@ const SITE = {
   ],
   callTel: "+971506789646", // the "Call" buttons
   mapQuery: "Advance Hardware LLC, Industrial Area 2, Sharjah",
-  // Replace with the Google Maps share link of the business profile when available.
-  googleUrl: "https://www.google.com/maps/search/?api=1&query=Advance%20Hardware%20LLC%20Industrial%20Area%202%20Sharjah",
+  geo: { lat: 25.3197832, lng: 55.4054299 },          // the shop's pin on Google Maps
+  googleUrl: "https://maps.google.com/?cid=1551431354454962109", // the Google Business Profile (reviews, photos)
   // Opening hours come from data/hours.json (via assets/hours.js, made by tools/build_pages.py). Never edit them here.
   hours: Object.assign({ default: (window.HOURS || {}).default || [] }, (window.HOURS || {}).days || {}),
   // Hero video: set to { mp4: "media/hero.mp4", webm: "media/hero.webm", mobile: "media/hero-720.mp4" }
@@ -55,7 +55,7 @@ const ARRIVAL = urlSrc || sessGet("ah-src") || "";
 // Every WhatsApp message ends with e.g. "Ref: website/home/hero · via QR code" so the shop can see what brought the enquiry.
 const refLine = (place) => `Ref: website/${document.body.dataset.page || "site"}/${place || "link"}${ARRIVAL ? ` · via ${SRC_NAMES[ARRIVAL] || ARRIVAL}` : ""}`;
 const waLink = (text, place) => `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`${text}\n\n${refLine(place)}`)}`;
-const mapLink = () => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(SITE.mapQuery)}`;
+const mapLink = () => `https://www.google.com/maps/dir/?api=1&destination=${SITE.geo.lat},${SITE.geo.lng}`;
 
 /* ---------- icons ---------- */
 const ICONS = {
@@ -507,7 +507,7 @@ function initMotion() {
 
   const map = document.getElementById("map-frame");
   if (map) {
-    const load = () => { if (!map.src) map.src = `https://maps.google.com/maps?q=${encodeURIComponent(SITE.mapQuery)}&z=16&output=embed`; };
+    const load = () => { if (!map.src) map.src = `https://maps.google.com/maps?q=${SITE.geo.lat},${SITE.geo.lng}+(${encodeURIComponent("Advance Hardware")})&z=17&output=embed`; };
     if (io) {
       const obs = new IntersectionObserver(([en]) => { if (en.isIntersecting) { load(); obs.disconnect(); } }, { rootMargin: "300px" });
       obs.observe(map);
