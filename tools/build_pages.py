@@ -21,7 +21,7 @@ def hours_sentence():
     while i < 7:
         j = i
         while j + 1 < 7 and ranges(order[j + 1]) == ranges(order[i]): j += 1
-        label = DAY_NAMES[order[i]] if i == j else f"{DAY_NAMES[order[i]]} to {DAY_NAMES[order[j]]}"
+        label = DAY_NAMES[order[i]] if i == j else f"{DAY_NAMES[order[i]]} {'and' if j == i + 1 else 'to'} {DAY_NAMES[order[j]]}"
         r = ranges(order[i])
         out.append(f"{label} " + (" and ".join(f"{o.lstrip('0')}–{c}" for o, c in r) if r else "closed"))
         i = j + 1
