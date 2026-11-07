@@ -19,7 +19,11 @@ Add `?lang=ar` to any address to open the Arabic version, for example `products.
    photos when ready (`docs/photo-shot-list.md`), using the same look (`docs/image-recipe.md`).
 4. **Google link**: put your Google Maps share link in `googleUrl` at the top of `assets/app.js`
    (and in `sameAs` in `tools/build_pages.py`, then run it).
-5. **Reviews**: paste 2–3 real Google reviews to show on the home page. Never write our own.
+5. **Reviews**: paste 2–3 real Google reviews into `data/reviews.json`, word for word, then run `python3 tools/build_pages.py`.
+   Never write our own. Format (one entry per review; `lang` is `en` or `ar`):
+   ```json
+   [{"name": "First name", "date": "Oct 2026", "stars": 5, "text": "Exact words from Google", "url": "link to the review", "lang": "en"}]
+   ```
 
 ## Change the products
 1. Open `data/products.csv` in Excel or Numbers. One row per product:
@@ -32,9 +36,14 @@ Add `?lang=ar` to any address to open the Arabic version, for example `products.
    - `check`: write `check` if not yet confirmed; leave empty when confirmed
 2. Save as **CSV UTF-8**, then run `python3 tools/build_products.py`.
 
-## Change phone numbers, hours, Google link or hero video
-All at the top of `assets/app.js` (`SITE = { ... }`). The "Open now / Closed now" sign uses these hours in UAE time.
-If you change the hours, also change `openingHoursSpecification` in `index.html` (Google reads it).
+## Change opening hours
+Only in `data/hours.json` (UAE time). A closed day is an empty list, e.g. `"0": []` for Sunday; it then shows "Closed".
+Run `python3 tools/build_pages.py`: the header badge, the 7-day table, the footer, the open/closed sign,
+Google's structured data and the contact page description all update from that one file.
+Keep Google Business Profile hours the same.
+
+## Change phone numbers, Google link or hero video
+At the top of `assets/app.js` (`SITE = { ... }`).
 
 ## Add the hero video
 Put `hero.mp4` (1080p), `hero.webm` and `hero-720.mp4` (phones) in `media/`, each under 3 MB, then set
@@ -56,3 +65,17 @@ connect it in the host's settings, and add the address to your Google Business P
 `tools/process_images.py` downloads each photo, cuts out the product (rembg, runs on this Mac), applies one colour grade
 and exports WebP and JPEG sizes. Card images: product cut-out on dark steel (4:3). Hero and About: full graded photos.
 The recipe is in `docs/image-recipe.md` and credits are in `data/photo-credits.json`.
+
+## Where enquiries come from (WhatsApp "Ref" line)
+Every WhatsApp message sent from the site ends with a line like `Ref: website/home/hero` (page / button).
+Places: header, menu, mobile-bar, footer, hero, grades, how-to-order, find-a-size, products-photo, product-search, my-list, trade-form.
+Use these links outside the site so the message also says where the visitor came from (`· via …`):
+
+| Where | Link |
+|---|---|
+| Google Business Profile (website field) | `https://YOUR-SITE/?src=google` |
+| QR codes (shop counter, delivery bags, invoices) | `https://YOUR-SITE/?src=qr` |
+| Instagram bio | `https://YOUR-SITE/?src=instagram` |
+| Facebook / TikTok / business card / flyer | `?src=facebook`, `?src=tiktok`, `?src=card`, `?src=flyer` |
+
+Example message ending: `Ref: website/products/my-list · via QR code`. The source is remembered while the visitor browses.

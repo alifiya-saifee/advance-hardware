@@ -33,11 +33,11 @@
   {
    "file": "card-washers",
    "use": "category card",
-   "title": "Unterlegscheiben, Mini-Skyline -- 2020 -- 3875.jpg",
-   "artist": "Dietmar Rabich",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "page": "https://commons.wikimedia.org/wiki/File:Unterlegscheiben,_Mini-Skyline_--_2020_--_3875.jpg",
+   "title": "Rondelle 03.jpg",
+   "artist": "Tiesse",
+   "license": "Public domain",
+   "license_url": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Rondelle_03.jpg",
    "changes": "background removed, converted to black and white, colour graded, placed on a dark background, resized"
   },
   {
@@ -125,7 +125,7 @@
   "card-high-tensile": "High-tensile flange bolt",
   "card-bolts": "Hex bolt with hex nut",
   "card-nuts": "Steel hex nut",
-  "card-washers": "Stacks of flat steel washers",
+  "card-washers": "Flat washer and spring washer",
   "card-screws": "Allen socket head cap screw",
   "card-threaded-bar": "Threaded bar",
   "card-anchors-tools": "Masonry drill bit",

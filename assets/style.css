@@ -489,3 +489,26 @@ html[lang="ar"] .footer-h { font-family: var(--f-ar); letter-spacing: 0; font-si
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
   .hero-media { transform: none !important; }
 }
+
+/* ---------- header: never wrap ---------- */
+.header-row, .nav, .nav a, .header-actions, .logo { white-space: nowrap; flex-wrap: nowrap; }
+.logo { flex: none; }
+.nav-short { display: none; }
+.mobile-nav .nav-short { display: none !important; }
+.mobile-nav .nav-long { display: inline !important; }
+@media (min-width: 1080px) and (max-width: 1279px) {
+  .logo-tag { display: none; }
+  .nav-long { display: none; }
+  .nav-short { display: inline; }
+  .nav a { padding: 0 10px; }
+  .nav a::after { inset-inline: 10px; }
+}
+@media (min-width: 1080px) and (max-width: 1199px) { .header-phone { display: none !important; } }
+
+/* ---------- review cards (real reviews only) ---------- */
+.review-row { display: grid; grid-auto-flow: column; grid-auto-columns: 85%; gap: var(--s4); overflow-x: auto; scroll-snap-type: x mandatory; margin-top: var(--s5); padding-bottom: var(--s2); }
+@media (min-width: 860px) { .review-row { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; } }
+.review-card { scroll-snap-align: start; margin: 0; background: var(--white); border: 1px solid var(--card-line); border-radius: var(--radius-lg); padding: var(--s5); display: flex; flex-direction: column; gap: var(--s3); }
+.review-card blockquote { margin: 0; font-size: 17px; line-height: 1.6; color: var(--ink); display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+.review-card figcaption { margin-top: auto; font-size: 15px; color: var(--ink-2); }
+.review-card a { color: var(--ink); }

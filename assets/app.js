@@ -13,12 +13,8 @@ const SITE = {
   mapQuery: "Advance Hardware LLC, Industrial Area 2, Sharjah",
   // Replace with the Google Maps share link of the business profile when available.
   googleUrl: "https://www.google.com/maps/search/?api=1&query=Advance%20Hardware%20LLC%20Industrial%20Area%202%20Sharjah",
-  // Opening hours in UAE time (Asia/Dubai). Day numbers: 0 = Sunday … 5 = Friday, 6 = Saturday.
-  // "default" applies to every day not listed. Use [] for a closed day.
-  hours: {
-    default: [["08:00", "13:00"], ["16:00", "19:45"]],
-    5: [["08:00", "12:00"], ["16:00", "19:45"]],
-  },
+  // Opening hours come from data/hours.json (via assets/hours.js, made by tools/build_pages.py). Never edit them here.
+  hours: Object.assign({ default: (window.HOURS || {}).default || [] }, (window.HOURS || {}).days || {}),
   // Hero video: set to { mp4: "media/hero.mp4", webm: "media/hero.webm", mobile: "media/hero-720.mp4" }
   // once the real video exists. Until then the hero photo shows.
   heroVideo: null,
@@ -48,7 +44,17 @@ const urlLang = new URLSearchParams(location.search).get("lang"); // ?lang=ar op
 let lang = (urlLang || storeGet(LANG_KEY)) === "ar" ? "ar" : "en";
 const t = (key) => (I18N[lang] && I18N[lang][key]) || I18N.en[key] || key;
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const waLink = (text) => `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(text)}`;
+// Where the visitor came from: links like ?src=google, ?src=qr, ?src=instagram (kept for the visit).
+const SRC_NAMES = { google: "Google profile", gbp: "Google profile", maps: "Google Maps", qr: "QR code", instagram: "Instagram", ig: "Instagram",
+  facebook: "Facebook", fb: "Facebook", tiktok: "TikTok", status: "WhatsApp status", card: "Business card", flyer: "Flyer" };
+function sessGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
+function sessSet(k, v) { try { sessionStorage.setItem(k, v); } catch (e) { /* ignore */ } }
+const urlSrc = (new URLSearchParams(location.search).get("src") || "").toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 30);
+if (urlSrc) sessSet("ah-src", urlSrc);
+const ARRIVAL = urlSrc || sessGet("ah-src") || "";
+// Every WhatsApp message ends with e.g. "Ref: website/home/hero · via QR code" so the shop can see what brought the enquiry.
+const refLine = (place) => `Ref: website/${document.body.dataset.page || "site"}/${place || "link"}${ARRIVAL ? ` · via ${SRC_NAMES[ARRIVAL] || ARRIVAL}` : ""}`;
+const waLink = (text, place) => `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`${text}\n\n${refLine(place)}`)}`;
 const mapLink = () => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(SITE.mapQuery)}`;
 
 /* ---------- icons ---------- */
@@ -105,7 +111,7 @@ const fmtTime = (hhmm) => hhmm.replace(/^0/, "");
 const rangesFor = (day) => (day in SITE.hours ? SITE.hours[day] : SITE.hours.default);
 const hoursText = (day, sep = ` ${t("and")} `) => {
   const r = rangesFor(day);
-  return r.length ? r.map(([a, b]) => `${fmtTime(a)}–${fmtTime(b)}`).join(sep) : t("closed_now").replace(/ .*/, "");
+  return r.length ? r.map(([a, b]) => `${fmtTime(a)}–${fmtTime(b)}`).join(sep) : t("closed");
 };
 function openState() {
   const { day, mins } = dubaiNow();
@@ -145,8 +151,12 @@ const NAV = [
 function renderChrome() {
   renderIcons();
   const page = document.body.dataset.page;
-  const links = NAV.map(([key, href, label]) =>
-    `<a href="${href}" data-i18n="${label}" ${key === page ? 'aria-current="page"' : ""}></a>`).join("");
+  const links = NAV.map(([key, href, label]) => {
+    const cur = key === page ? 'aria-current="page"' : "";
+    return key === "trade"
+      ? `<a href="${href}" ${cur}><span class="nav-long" data-i18n="${label}"></span><span class="nav-short" data-i18n="nav_trade_short"></span></a>`
+      : `<a href="${href}" data-i18n="${label}" ${cur}></a>`;
+  }).join("");
   const header = document.getElementById("site-header");
   header.innerHTML = `
     <div class="wrap header-row">
@@ -158,7 +168,7 @@ function renderChrome() {
       <div class="header-actions">
         <a class="header-phone" href="tel:${SITE.callTel}" dir="ltr">${icon("phone")}${SITE.phones[1].label}</a>
         <button class="lang-btn" type="button" data-i18n="lang_switch"></button>
-        <a class="btn btn-wa btn-sm wa-list-link" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">${icon("wa")}<span class="hide-sm" data-i18n="wa_short"></span></a>
+        <a class="btn btn-wa btn-sm wa-list-link" data-src="header" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">${icon("wa")}<span class="hide-sm" data-i18n="wa_short"></span></a>
         <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu">${icon("menu")}<span class="sr-only" data-i18n="menu_open"></span></button>
       </div>
     </div>`;
@@ -178,7 +188,7 @@ function renderChrome() {
       <a href="index.html" data-i18n="nav_home" ${page === "home" ? 'aria-current="page"' : ""}></a>${links}
     </nav>
     <div class="mobile-menu-actions">
-      <a class="btn btn-wa btn-block wa-list-link" href="#" target="_blank" rel="noopener">${icon("wa")}<span data-i18n="cta_send_list"></span></a>
+      <a class="btn btn-wa btn-block wa-list-link" data-src="menu" href="#" target="_blank" rel="noopener">${icon("wa")}<span data-i18n="cta_send_list"></span></a>
       <a class="btn btn-secondary btn-block" style="color:#fff" href="tel:${SITE.callTel}">${icon("phone")}<span data-i18n="call"></span> <span dir="ltr">${SITE.phones[1].label}</span></a>
       <button class="btn btn-secondary btn-block lang-btn" style="color:#fff" type="button" data-i18n="lang_switch"></button>
     </div>`;
@@ -196,12 +206,11 @@ function renderChrome() {
         <a class="logo" href="index.html"><span class="logo-mark">${icon("nut")}</span><span class="logo-words"><span class="logo-text" data-i18n="brand"></span></span></a>
         <p><strong data-i18n="brand_full"></strong></p>
         <p data-i18n="contact_address"></p>
-        <p><span data-i18n="contact_trn"></span>: <span class="mono" dir="ltr">${SITE.trn}</span></p>
       </div>
       <div>
         <h2 class="footer-h" data-i18n="contact_phone_t"></h2>
         ${SITE.phones.map((p) => `<p class="footer-phone"><span class="lbl" data-i18n="${p.key}"></span> <a href="tel:${p.tel}" dir="ltr" class="mono">${p.label}</a></p>`).join("")}
-        <p><a class="wa-list-link" href="#" target="_blank" rel="noopener" data-i18n="wa_short"></a></p>
+        <p><a class="wa-list-link" data-src="footer" href="#" target="_blank" rel="noopener" data-i18n="wa_short"></a></p>
       </div>
       <div>
         <h2 class="footer-h" data-i18n="contact_hours_t"></h2>
@@ -222,7 +231,7 @@ function renderChrome() {
   extras.innerHTML = `
     <button class="list-fab" type="button" aria-haspopup="dialog">${icon("list")}<span data-i18n="list_btn"></span><b class="list-count">0</b></button>
     <nav class="action-bar" aria-label="Quick actions">
-      <a class="bar-wa wa-list-link" href="#" target="_blank" rel="noopener">${icon("wa")}<span data-i18n="wa_short"></span></a>
+      <a class="bar-wa wa-list-link" data-src="mobile-bar" href="#" target="_blank" rel="noopener">${icon("wa")}<span data-i18n="wa_short"></span></a>
       <a href="tel:${SITE.callTel}">${icon("phone")}<span data-i18n="call"></span></a>
       <button class="bar-list" type="button" aria-haspopup="dialog">${icon("list")}<span data-i18n="list_btn"></span><b class="list-count">0</b></button>
     </nav>
@@ -285,8 +294,8 @@ function applyLang() {
   document.querySelectorAll("[data-i18n-label]").forEach((el) => { el.setAttribute("aria-label", t(el.dataset.i18nLabel)); });
   const title = document.body.dataset.title;
   if (title) document.title = `${t(title)} | ${t("brand")}`;
-  document.querySelectorAll(".wa-list-link").forEach((a) => { a.href = waLink(t("wa_simple")); });
-  document.querySelectorAll(".wa-photo-link").forEach((a) => { a.href = waLink(t("wa_photo")); });
+  document.querySelectorAll(".wa-list-link").forEach((a) => { a.href = waLink(t("wa_simple"), a.dataset.src); });
+  document.querySelectorAll(".wa-photo-link").forEach((a) => { a.href = waLink(t("wa_photo"), a.dataset.src); });
   document.querySelectorAll(".google-link").forEach((a) => { a.href = SITE.googleUrl; });
   document.querySelectorAll(".call-link").forEach((a) => { a.href = `tel:${SITE.callTel}`; });
   updateHours();
@@ -399,7 +408,7 @@ function renderList() {
     const lines = memoryList.map((x, i) => `${i + 1}. ${lineName(x)} × ${x.qty}`);
     const noteText = body.querySelector(".list-note").value.trim();
     const msg = [t("wa_greeting"), ...lines, noteText ? `\n${t("wa_note")}: ${noteText}` : ""].filter(Boolean).join("\n");
-    e.currentTarget.href = waLink(msg);
+    e.currentTarget.href = waLink(msg, "my-list");
   });
 }
 
@@ -567,7 +576,7 @@ function initProducts() {
     const shown = products.filter((p) => (activeCat === "all" || p.cat === activeCat) && matches(p, q));
     if (!shown.length) {
       grid.innerHTML = `<div class="empty"><p>${esc(t("prod_none"))}</p>
-        <a class="btn btn-wa" href="${waLink(t("wa_photo") + " " + q)}" target="_blank" rel="noopener">${icon("wa")}${esc(t("find_cta"))}</a></div>`;
+        <a class="btn btn-wa" href="${waLink(t("wa_photo") + " " + q, "product-search")}" target="_blank" rel="noopener">${icon("wa")}${esc(t("find_cta"))}</a></div>`;
       return;
     }
     grid.innerHTML = shown.map((p) => `
@@ -628,7 +637,7 @@ function initTrade() {
       f.get("area") ? `${t("form_area")}: ${f.get("area").trim()}` : "",
       f.get("items") ? `${t("form_items")}: ${f.get("items").trim()}` : "",
     ].filter(Boolean).join("\n");
-    window.open(waLink(msg), "_blank", "noopener");
+    window.open(waLink(msg, "trade-form"), "_blank", "noopener");
   });
 }
 

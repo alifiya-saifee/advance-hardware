@@ -1,6 +1,31 @@
 """Builds the five HTML pages (shared head, cards, picture markup). Run: python3 tools/build_pages.py"""
+import json
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
+HOURS = json.loads((ROOT / "data" / "hours.json").read_text())
+REVIEWS = json.loads((ROOT / "data" / "reviews.json").read_text())
+DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+def ranges(d):
+    return HOURS["days"].get(str(d), HOURS["default"])
+
+def hours_ld():
+    groups = {}
+    for d in [6, 0, 1, 2, 3, 4, 5]:
+        for o, c in ranges(d):
+            groups.setdefault((o, c), []).append(DAY_NAMES[d])
+    return [{"@type": "OpeningHoursSpecification", "dayOfWeek": days, "opens": o, "closes": c} for (o, c), days in groups.items()]
+
+def hours_sentence():
+    order, out, i = [6, 0, 1, 2, 3, 4, 5], [], 0
+    while i < 7:
+        j = i
+        while j + 1 < 7 and ranges(order[j + 1]) == ranges(order[i]): j += 1
+        label = DAY_NAMES[order[i]] if i == j else f"{DAY_NAMES[order[i]]} to {DAY_NAMES[order[j]]}"
+        r = ranges(order[i])
+        out.append(f"{label} " + (" and ".join(f"{o.lstrip('0')}–{c}" for o, c in r) if r else "closed"))
+        i = j + 1
+    return ", ".join(out)
 FONTS = "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
 SITE_URL = ""  # e.g. "https://advancehardware.ae" once online (used for the share image)
 
@@ -26,6 +51,7 @@ def head(title, desc, extra=""):
   <link rel="stylesheet" href="{FONTS}" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="{FONTS}"></noscript>
 {extra}  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/hours.js" defer></script>
   <script src="assets/i18n.js" defer></script>
   <script src="assets/products.js" defer></script>
   <script src="assets/app.js" defer></script>
@@ -110,14 +136,11 @@ def grade(num, tensile, yld, dk, desc, mk, more):
 HOME_LD = '''  <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "HardwareStore", "name": "Advance Hardware LLC", "alternateName": ["Advance Hardware", "أدفانس هاردوير"],
    "foundingDate": "1996", "description": "Fastener specialist in Sharjah Industrial Area 2: high-tensile bolts 8.8, 10.9 and 12.9, nuts, screws, washers, threaded bar and gloves.",
+   "telephone": "+971506789646", "image": "media/og.jpg",
    "address": {"@type": "PostalAddress", "streetAddress": "Shop No. 2, near ADCB Bank, J & P Road, Industrial Area 2", "addressLocality": "Sharjah", "addressCountry": "AE"},
    "areaServed": ["Sharjah", "Dubai"], "knowsLanguage": ["ar", "en", "hi", "ur"],
    "sameAs": ["https://www.google.com/maps/search/?api=1&query=Advance%20Hardware%20LLC%20Industrial%20Area%202%20Sharjah"],
-   "openingHoursSpecification": [
-     {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "08:00", "closes": "13:00"},
-     {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "16:00", "closes": "19:45"},
-     {"@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "08:00", "closes": "12:00"},
-     {"@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "16:00", "closes": "19:45"}]}
+   "openingHoursSpecification": OPENING_HOURS}
   </script>
   <link rel="preload" as="image" type="image/webp" href="media/hero-m-540.webp" imagesrcset="media/hero-m-540.webp 540w, media/hero-m-1080.webp 1080w" imagesizes="100vw" media="(max-width: 719px)">
   <link rel="preload" as="image" type="image/webp" href="media/hero-1920.webp" imagesrcset="media/hero-960.webp 960w, media/hero-1920.webp 1920w, media/hero-2400.webp 2400w" imagesizes="100vw" media="(min-width: 720px)">
@@ -157,6 +180,26 @@ VISIT = '''    <section class="section dark grain" id="visit">
       </div>
     </section>'''
 
+def reviews_html():
+    """Real Google reviews only, copied word for word into data/reviews.json. Empty file = no cards."""
+    import html as H
+    if not REVIEWS:
+        return ""
+    cards = []
+    for r in REVIEWS[:3]:
+        stars = int(r.get("stars", 5))
+        star_svg = '<i data-icon="star"></i>' * stars
+        lang_attr = ' lang="ar" dir="rtl"' if r.get("lang") == "ar" else ' lang="en" dir="ltr"'
+        cards.append(f'''          <figure class="review-card reveal">
+            <div class="stars" aria-label="{stars} out of 5 stars">{star_svg}</div>
+            <blockquote{lang_attr}>{"«" if r.get("lang") == "ar" else "“"}{H.escape(r["text"])}{"»" if r.get("lang") == "ar" else "”"}</blockquote>
+            <figcaption><strong>{H.escape(r["name"])}</strong> · <a href="{H.escape(r.get("url") or "#")}" class="google-review-link" target="_blank" rel="noopener" data-i18n="rev_google">Google review</a><br><span class="small">{H.escape(r.get("date", ""))}</span></figcaption>
+          </figure>''')
+    return '\n        <div class="review-row stagger">\n' + "\n".join(cards) + "\n        </div>"
+
+def build_home_ld():
+    return HOME_LD.replace("OPENING_HOURS", json.dumps(hours_ld(), ensure_ascii=False))
+
 def build_home():
     hero_pic = ('<picture>'
         '<source media="(max-width: 719px)" type="image/webp" srcset="media/hero-m-540.webp 540w, media/hero-m-1080.webp 1080w" sizes="100vw">'
@@ -171,7 +214,7 @@ def build_home():
     ])
     html = head("Advance Hardware | Bolts, nuts and fasteners in Sharjah since 1996",
                 "Advance Hardware, Industrial Area 2, Sharjah: high-tensile bolts (8.8, 10.9, 12.9), nuts, screws, washers, threaded bar and gloves from stock since 1996. Send your list on WhatsApp for a quote in minutes. Same-day delivery in Sharjah and Dubai.",
-                HOME_LD) + "\n" + body_open("home", cls="has-hero") + f'''
+                build_home_ld()) + "\n" + body_open("home", cls="has-hero") + f'''
     <section class="hero dark">
       <div class="hero-media">{hero_pic}</div>
       <div class="wrap hero-content">
@@ -184,7 +227,7 @@ def build_home():
           </h1>
           <p class="hero-text" data-i18n="hero_text">Send your list on WhatsApp. Quote in minutes. Delivery across Sharjah and Dubai.</p>
           <div class="hero-actions">
-            <a class="btn btn-wa wa-list-link" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="cta_send_list">Send your list on WhatsApp</span></a>
+            <a class="btn btn-wa wa-list-link" data-src="hero" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="cta_send_list">Send your list on WhatsApp</span></a>
             <a class="btn btn-secondary" href="products.html" data-i18n="cta_browse">Browse products</a>
           </div>
           <div class="proof-row">
@@ -231,7 +274,7 @@ def build_home():
           <div class="grades">
 {grades}
           </div>
-          <a class="btn btn-accent wa-list-link" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="head_cta">Ask which grade you need</span></a>
+          <a class="btn btn-accent wa-list-link" data-src="grades" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="head_cta">Ask which grade you need</span></a>
         </div>
       </div>
     </section>
@@ -255,7 +298,7 @@ def build_home():
           <div class="step reveal"><span class="step-num">02</span><div><h3 class="h3" data-i18n="step2_t">Get a quote in minutes</h3><p data-i18n="step2_d">Prices and availability, in Arabic, English, Hindi or Urdu.</p></div></div>
           <div class="step reveal"><span class="step-num">03</span><div><h3 class="h3" data-i18n="step3_t">Pick up or same-day delivery</h3><p data-i18n="step3_d">Collect from the shop, or we deliver across Sharjah and Dubai.</p></div></div>
         </div>
-        <div class="after-grid"><a class="btn btn-wa wa-list-link" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="cta_send_list">Send your list on WhatsApp</span></a></div>
+        <div class="after-grid"><a class="btn btn-wa wa-list-link" data-src="how-to-order" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="cta_send_list">Send your list on WhatsApp</span></a></div>
       </div>
     </section>
 
@@ -265,7 +308,7 @@ def build_home():
           <h2 class="h2"><i data-icon="camera"></i><span data-i18n="find_title">Can't find a size?</span></h2>
           <p data-i18n="find_text">Send us a photo. We'll find it within 24 hours.</p>
         </div>
-        <a class="btn wa-photo-link" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="find_cta">Send a photo on WhatsApp</span></a>
+        <a class="btn wa-photo-link" data-src="find-a-size" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="find_cta">Send a photo on WhatsApp</span></a>
       </div>
     </section>
 
@@ -283,7 +326,7 @@ def build_home():
             <a class="btn btn-secondary google-link" href="#" target="_blank" rel="noopener" data-i18n="rev_cta">See all reviews on Google</a>
             <a class="text-link google-link" href="#" target="_blank" rel="noopener"><span data-i18n="rev_leave">Leave us a review</span><i data-icon="arrow"></i></a>
           </div>
-        </div>
+        </div>{reviews_html()}
       </div>
     </section>
 
@@ -306,7 +349,7 @@ def build_products():
         <div class="note-bar" style="margin-bottom:64px">
           <strong data-i18n="prod_missing_t">Can't find an item?</strong>
           <span data-i18n="prod_missing_d">Send a photo on WhatsApp. We'll find it within 24 hours.</span>
-          <a class="text-link wa-photo-link" href="https://wa.me/971506789646" target="_blank" rel="noopener"><span data-i18n="find_cta">Send a photo on WhatsApp</span><i data-icon="arrow"></i></a>
+          <a class="text-link wa-photo-link" data-src="products-photo" href="https://wa.me/971506789646" target="_blank" rel="noopener"><span data-i18n="find_cta">Send a photo on WhatsApp</span><i data-icon="arrow"></i></a>
         </div>
       </div>
     </section>
@@ -387,7 +430,7 @@ def build_about():
 
 def build_contact():
     html = head("Contact | Advance Hardware, Industrial Area 2, Sharjah",
-                "Advance Hardware, Shop No. 2, near ADCB Bank, J & P Road, Industrial Area 2, Sharjah. Mobile and WhatsApp 050 678 9646, shop 06 543 1678. Open Saturday to Thursday 8:00–13:00 and 16:00–19:45, Friday 8:00–12:00 and 16:00–19:45.") + "\n" + body_open("contact", "contact_title") + "\n" + page_head("nav_contact", "Contact", "contact_title", "Contact and location", "contact_text", "Visit the shop, call, or send us a WhatsApp message.") + "\n" + VISIT.replace('<section class="section dark grain" id="visit">', '<section class="section dark" id="visit">').replace('''        <div class="section-head reveal">
+                "Advance Hardware, Shop No. 2, near ADCB Bank, J & P Road, Industrial Area 2, Sharjah. Mobile and WhatsApp 050 678 9646, shop 06 543 1678. Open " + hours_sentence() + ".") + "\n" + body_open("contact", "contact_title") + "\n" + page_head("nav_contact", "Contact", "contact_title", "Contact and location", "contact_text", "Visit the shop, call, or send us a WhatsApp message.") + "\n" + VISIT.replace('<section class="section dark grain" id="visit">', '<section class="section dark" id="visit">').replace('''        <div class="section-head reveal">
           <p class="eyebrow" data-i18n="nav_contact">Contact</p>
           <h2 class="h2" data-i18n="visit_title">Visit the shop</h2>
           <p data-i18n="langs_line">We speak Arabic, English, Hindi and Urdu.</p>
@@ -405,6 +448,10 @@ def build_credits():
 ''' + BODY_CLOSE
     (ROOT / "credits.html").write_text(html)
 
+def write_hours_js():
+    (ROOT / "assets" / "hours.js").write_text("// Generated by tools/build_pages.py from data/hours.json. Do not edit by hand.\nwindow.HOURS = "
+        + json.dumps({"default": HOURS["default"], "days": HOURS["days"]}) + ";\n")
+
 if __name__ == "__main__":
-    build_home(); build_products(); build_trade(); build_about(); build_contact(); build_credits()
+    write_hours_js(); build_home(); build_products(); build_trade(); build_about(); build_contact(); build_credits()
     print("built: index, products, trade, about, contact, credits")

@@ -21,18 +21,16 @@
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "HardwareStore", "name": "Advance Hardware LLC", "alternateName": ["Advance Hardware", "أدفانس هاردوير"],
    "foundingDate": "1996", "description": "Fastener specialist in Sharjah Industrial Area 2: high-tensile bolts 8.8, 10.9 and 12.9, nuts, screws, washers, threaded bar and gloves.",
+   "telephone": "+971506789646", "image": "media/og.jpg",
    "address": {"@type": "PostalAddress", "streetAddress": "Shop No. 2, near ADCB Bank, J & P Road, Industrial Area 2", "addressLocality": "Sharjah", "addressCountry": "AE"},
    "areaServed": ["Sharjah", "Dubai"], "knowsLanguage": ["ar", "en", "hi", "ur"],
    "sameAs": ["https://www.google.com/maps/search/?api=1&query=Advance%20Hardware%20LLC%20Industrial%20Area%202%20Sharjah"],
-   "openingHoursSpecification": [
-     {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "08:00", "closes": "13:00"},
-     {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "16:00", "closes": "19:45"},
-     {"@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "08:00", "closes": "12:00"},
-     {"@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "16:00", "closes": "19:45"}]}
+   "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "08:00", "closes": "13:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "16:00", "closes": "19:45"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday"], "opens": "08:00", "closes": "12:00"}]}
   </script>
   <link rel="preload" as="image" type="image/webp" href="media/hero-m-540.webp" imagesrcset="media/hero-m-540.webp 540w, media/hero-m-1080.webp 1080w" imagesizes="100vw" media="(max-width: 719px)">
   <link rel="preload" as="image" type="image/webp" href="media/hero-1920.webp" imagesrcset="media/hero-960.webp 960w, media/hero-1920.webp 1920w, media/hero-2400.webp 2400w" imagesizes="100vw" media="(min-width: 720px)">
   <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/hours.js" defer></script>
   <script src="assets/i18n.js" defer></script>
   <script src="assets/products.js" defer></script>
   <script src="assets/app.js" defer></script>
@@ -53,7 +51,7 @@
           </h1>
           <p class="hero-text" data-i18n="hero_text">Send your list on WhatsApp. Quote in minutes. Delivery across Sharjah and Dubai.</p>
           <div class="hero-actions">
-            <a class="btn btn-wa wa-list-link" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="cta_send_list">Send your list on WhatsApp</span></a>
+            <a class="btn btn-wa wa-list-link" data-src="hero" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="cta_send_list">Send your list on WhatsApp</span></a>
             <a class="btn btn-secondary" href="products.html" data-i18n="cta_browse">Browse products</a>
           </div>
           <div class="proof-row">
@@ -210,7 +208,7 @@
               <p class="grade-more"><strong data-i18n="g_more">Typical uses and sizes</strong>: <span data-i18n="g129_more">Allen bolts, moulds and dies, engine and gearbox parts. In stock M6–M24.</span></p>
             </details>
           </div>
-          <a class="btn btn-accent wa-list-link" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="head_cta">Ask which grade you need</span></a>
+          <a class="btn btn-accent wa-list-link" data-src="grades" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="head_cta">Ask which grade you need</span></a>
         </div>
       </div>
     </section>
@@ -234,7 +232,7 @@
           <div class="step reveal"><span class="step-num">02</span><div><h3 class="h3" data-i18n="step2_t">Get a quote in minutes</h3><p data-i18n="step2_d">Prices and availability, in Arabic, English, Hindi or Urdu.</p></div></div>
           <div class="step reveal"><span class="step-num">03</span><div><h3 class="h3" data-i18n="step3_t">Pick up or same-day delivery</h3><p data-i18n="step3_d">Collect from the shop, or we deliver across Sharjah and Dubai.</p></div></div>
         </div>
-        <div class="after-grid"><a class="btn btn-wa wa-list-link" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="cta_send_list">Send your list on WhatsApp</span></a></div>
+        <div class="after-grid"><a class="btn btn-wa wa-list-link" data-src="how-to-order" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="cta_send_list">Send your list on WhatsApp</span></a></div>
       </div>
     </section>
 
@@ -244,7 +242,7 @@
           <h2 class="h2"><i data-icon="camera"></i><span data-i18n="find_title">Can't find a size?</span></h2>
           <p data-i18n="find_text">Send us a photo. We'll find it within 24 hours.</p>
         </div>
-        <a class="btn wa-photo-link" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="find_cta">Send a photo on WhatsApp</span></a>
+        <a class="btn wa-photo-link" data-src="find-a-size" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="find_cta">Send a photo on WhatsApp</span></a>
       </div>
     </section>
 

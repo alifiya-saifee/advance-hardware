@@ -16,7 +16,7 @@ CARDS = {  # name: (subject, index, alt text)
  "high-tensile":  ("bolts", 14, "High-tensile flange bolt"),
  "bolts":         ("hero", 11, "Hex bolt with hex nut"),
  "nuts":          ("nuts", 10, "Steel hex nut"),
- "washers":       ("washers2", 2, "Stacks of flat steel washers"),
+ "washers":       ("wash5", 4, "Flat washer and spring washer"),
  "screws":        ("screws", 1, "Allen socket head cap screw"),
  "threaded-bar":  ("threaded2", 6, "Threaded bar"),
  "anchors-tools": ("anchors-tools", 10, "Masonry drill bit"),
@@ -97,7 +97,7 @@ for name, (subj, idx, alt) in CARDS.items():
         cut = remove(src, session=session, post_process_mask=True).convert("RGBA")
     bbox = cut.getchannel("A").point(lambda v: 255 if v > 16 else 0).getbbox(); cut = cut.crop(bbox)
     base = cut.convert("RGB")
-    if name == "washers": base = ImageOps.grayscale(base).convert("RGB")
+    if name == "washers": base = ImageOps.grayscale(base).convert("RGB")  # remove green-screen spill on zinc
     rgb = grade(base); alpha = cut.getchannel("A").filter(ImageFilter.GaussianBlur(0.6))  # 1 px feather
     W, H = 1200, 900
     scale = min(0.70 * W / rgb.width, 0.74 * H / rgb.height)

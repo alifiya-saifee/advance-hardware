@@ -1,0 +1,7 @@
+{
+  "_help": "The ONLY place opening hours live. Times are UAE time (Asia/Dubai), 24-hour. 'default' applies to every day not listed in 'days'. Day numbers: 0 Sunday, 1 Monday, 2 Tuesday, 3 Wednesday, 4 Thursday, 5 Friday, 6 Saturday. A closed day is an empty list, e.g. \"0\": []. After editing, run: python3 tools/build_pages.py",
+  "default": [["08:00", "13:00"], ["16:00", "19:45"]],
+  "days": {
+    "5": [["08:00", "12:00"], ["16:00", "19:45"]]
+  }
+}
