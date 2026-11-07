@@ -86,6 +86,7 @@ const ICONS = {
   copy: '<rect x="15" y="15" width="25" height="25" rx="3"/><path d="M33 15V9a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h6"/>',
   shop: '<path d="M6 18l3-10h30l3 10"/><path d="M6 18h36v4a6 6 0 0 1-12 0 6 6 0 0 1-12 0 6 6 0 0 1-12 0z"/><path d="M9 26v16h30V26"/><path d="M20 42V32h8v10"/>',
 };
+const MARK = '<svg viewBox="0 0 100 100" aria-hidden="true"><polygon points="50.00,4.00 89.84,27.00 89.84,73.00 50.00,96.00 10.16,73.00 10.16,27.00" fill="#F2A900"/><circle cx="50" cy="50" r="31.00" fill="none" stroke="#111315" stroke-width="4.20"/><g stroke="#111315" stroke-width="7.00" stroke-linecap="round"><line x1="50.00" y1="40.00" x2="50.00" y2="27.00"/><line x1="58.66" y1="55.00" x2="69.92" y2="61.50"/><line x1="41.34" y1="55.00" x2="30.08" y2="61.50"/></g></svg>';
 const icon = (name, cls = "icon") =>
   `<svg class="${cls}" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ICONS.bolt}</svg>`;
 
@@ -161,7 +162,7 @@ function renderChrome() {
   header.innerHTML = `
     <div class="wrap header-row">
       <a class="logo" href="index.html">
-        <span class="logo-mark">${icon("nut")}</span>
+        <span class="logo-mark">${MARK}</span>
         <span class="logo-words"><span class="logo-text" data-i18n="brand"></span><span class="logo-tag" data-i18n="tagline"></span></span>
       </a>
       <nav class="nav" aria-label="Main">${links}</nav>
@@ -203,7 +204,7 @@ function renderChrome() {
   document.getElementById("site-footer").innerHTML = `
     <div class="wrap footer-grid">
       <div class="footer-brand">
-        <a class="logo" href="index.html"><span class="logo-mark">${icon("nut")}</span><span class="logo-words"><span class="logo-text" data-i18n="brand"></span></span></a>
+        <a class="footer-seal" href="index.html"><picture><source type="image/webp" srcset="media/brand/seal-240.webp 1x, media/brand/seal-480.webp 2x"><img src="media/brand/seal-240.png" srcset="media/brand/seal-480.png 2x" width="112" height="112" alt="Advance Hardware, Sharjah, since 1996" loading="lazy"></picture></a>
         <p><strong data-i18n="brand_full"></strong></p>
         <p data-i18n="contact_address"></p>
       </div>

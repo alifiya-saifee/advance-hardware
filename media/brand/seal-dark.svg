@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Advance Hardware, Sharjah, since 1996">
+  <defs><path id="ring" d="M 24.5 100 a 75.5 75.5 0 1 1 151.0 0 a 75.5 75.5 0 1 1 -151.0 0"/></defs>
+  <circle cx="100" cy="100" r="98" fill="#111315"/>
+  <circle cx="100" cy="100" r="92" fill="none" stroke="#F2A900" stroke-width="4"/>
+  <circle cx="100" cy="100" r="61" fill="none" stroke="#F2A900" stroke-width="2.5"/>
+  <text font-family="'Barlow Condensed', 'Arial Narrow', Arial, sans-serif" font-weight="700" font-size="17" letter-spacing="2" fill="#F2A900">
+    <textPath href="#ring" textLength="468.4" lengthAdjust="spacing">ADVANCE HARDWARE • SHARJAH • SINCE 1996 •</textPath>
+  </text>
+  <polygon points="100.00,56.00 138.11,78.00 138.11,122.00 100.00,144.00 61.89,122.00 61.89,78.00" fill="#F2A900"/><circle cx="100" cy="100" r="29.65" fill="none" stroke="#111315" stroke-width="4.02"/><g stroke="#111315" stroke-width="6.70" stroke-linecap="round"><line x1="100.00" y1="90.43" x2="100.00" y2="78.00"/><line x1="108.28" y1="104.78" x2="119.05" y2="111.00"/><line x1="91.72" y1="104.78" x2="80.95" y2="111.00"/></g>
+</svg>
