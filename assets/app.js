@@ -507,7 +507,8 @@ function initMotion() {
 
   const map = document.getElementById("map-frame");
   if (map) {
-    const load = () => { if (!map.src) map.src = `https://maps.google.com/maps?q=${SITE.geo.lat},${SITE.geo.lng}+(${encodeURIComponent("Advance Hardware")})&z=17&output=embed`; };
+    const load = () => { if (!map.src) // Searching by name makes Google show the business card (name, rating, "Open in Maps") on the map.
+      map.src = `https://maps.google.com/maps?q=${encodeURIComponent(SITE.mapQuery)}&z=16&output=embed`; };
     if (io) {
       const obs = new IntersectionObserver(([en]) => { if (en.isIntersecting) { load(); obs.disconnect(); } }, { rootMargin: "300px" });
       obs.observe(map);
