@@ -69,13 +69,34 @@ window.PRODUCTS = [
   "grades": []
  },
  {
-  "id": "bolts-allen-bolts-socket-head",
+  "id": "bolts-ss-bolts-and-nuts-stainless-steel",
   "icon": "bolt",
   "cat": "bolts",
   "cat_en": "Bolts",
   "cat_ar": "براغي (بولت)",
-  "en": "Allen bolts (socket head)",
-  "ar": "براغي ألن",
+  "en": "SS bolts and nuts (stainless steel)",
+  "ar": "براغي وصواميل ستانلس ستيل (SS)",
+  "sizes": [
+   "M6",
+   "M8",
+   "M10",
+   "M12",
+   "M14",
+   "M16",
+   "M20",
+   "M24"
+  ],
+  "options": [],
+  "grades": []
+ },
+ {
+  "id": "bolts-socket-screws-allen",
+  "icon": "bolt",
+  "cat": "bolts",
+  "cat_en": "Bolts",
+  "cat_ar": "براغي (بولت)",
+  "en": "Socket screws (Allen)",
+  "ar": "سكرو سوكيت (ألن)",
   "sizes": [
    "M3",
    "M4",
@@ -401,12 +422,16 @@ window.PRODUCTS = [
   ],
   "options": [
    {
-    "en": "Zinc plated",
-    "ar": "مطلي زنك"
+    "en": "SS (stainless steel)",
+    "ar": "SS (ستانلس ستيل)"
    },
    {
-    "en": "Stainless steel",
-    "ar": "ستانلس ستيل"
+    "en": "MS (mild steel)",
+    "ar": "MS (حديد عادي)"
+   },
+   {
+    "en": "GI (galvanised)",
+    "ar": "GI (مجلفن)"
    }
   ],
   "grades": []

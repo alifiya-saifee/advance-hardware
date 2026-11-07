@@ -223,8 +223,7 @@ function renderChrome() {
       </div>
     </div>
     <div class="wrap footer-bottom">
-      <span>© ${SITE.founded}–${year} ${SITE.name} · Sharjah, UAE</span>
-      <a href="credits.html" data-i18n="footer_credits"></a>
+      <span>© ${SITE.founded}–${year} ${SITE.name} · Sharjah, UAE <a class="credits-link" href="credits.html" data-i18n="footer_credits"></a></span>
     </div>`;
 
   const extras = document.createElement("div");

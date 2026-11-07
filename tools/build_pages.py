@@ -92,11 +92,11 @@ def page_head(eyebrow_key, eyebrow, h_key, h, p_key, p):
 # ---------------- home ----------------
 CARDS = [  # slug (products.html#), image stem, title key, title, spec key, spec, alt key
     ("high-tensile-bolts", "high-tensile", "cat_hightensile", "High-tensile bolts", "spec_hightensile", "Grade 8.8 · 10.9 · 12.9", "alt_high_tensile"),
-    ("bolts", "bolts", "cat_bolts", "Bolts", "spec_bolts", "Hex · Allen · Bolt + nut sets", "alt_bolts"),
+    ("bolts", "bolts", "cat_bolts", "Bolts", "spec_bolts", "Hex · Socket · SS bolt + nut", "alt_bolts"),
     ("nuts", "nuts", "cat_nuts", "Nuts", "spec_nuts", "Hex · Lock · Other types", "alt_nuts"),
     ("washers", "washers", "cat_washers", "Washers", "spec_washers", "Flat · Spring · Copper", "alt_washers"),
     ("screws", "screws", "cat_screws", "Screws", "spec_screws", "CSK Allen · Grub · General", "alt_screws"),
-    ("threaded-bar", "threaded-bar", "cat_rod", "Threaded bar", "spec_rod", "M6–M24 · Zinc · Stainless", "alt_rod"),
+    ("threaded-bar", "threaded-bar", "cat_rod", "Threaded bar", "spec_rod", "M6–M24 · SS · MS · GI", "alt_rod"),
     ("anchors-and-fixings", "anchors-tools", "cat_anchors", "Anchors and tools", "spec_anchors", "Anchors · Drill bits · Discs", "alt_anchors"),
     ("gloves-and-safety", "gloves", "cat_gloves", "Gloves and safety", "spec_gloves", "Work gloves · Glasses · Ear plugs", "alt_gloves"),
 ]
