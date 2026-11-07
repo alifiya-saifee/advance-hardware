@@ -187,13 +187,15 @@ def reviews_html():
         return ""
     cards = []
     for r in REVIEWS[:3]:
-        stars = int(r.get("stars", 5))
-        star_svg = '<i data-icon="star"></i>' * stars
+        stars = r.get("stars")  # only real star counts; leave null if unknown
+        star_div = f'<div class="stars" aria-label="{int(stars)} out of 5 stars">' + '<i data-icon="star"></i>' * int(stars) + "</div>" if stars else ""
+        date = f'<br><span class="small">{H.escape(r["date"])}</span>' if r.get("date") else ""
+        link = f'href="{H.escape(r["url"])}" class="google-review-link"' if r.get("url") else 'href="#" class="google-link"'
         lang_attr = ' lang="ar" dir="rtl"' if r.get("lang") == "ar" else ' lang="en" dir="ltr"'
         cards.append(f'''          <figure class="review-card reveal">
-            <div class="stars" aria-label="{stars} out of 5 stars">{star_svg}</div>
+            {star_div}
             <blockquote{lang_attr}>{"«" if r.get("lang") == "ar" else "“"}{H.escape(r["text"])}{"»" if r.get("lang") == "ar" else "”"}</blockquote>
-            <figcaption><strong>{H.escape(r["name"])}</strong> · <a href="{H.escape(r.get("url") or "#")}" class="google-review-link" target="_blank" rel="noopener" data-i18n="rev_google">Google review</a><br><span class="small">{H.escape(r.get("date", ""))}</span></figcaption>
+            <figcaption><strong>{H.escape(r["name"])}</strong> · <a {link} target="_blank" rel="noopener" data-i18n="rev_google">Google review</a>{date}</figcaption>
           </figure>''')
     return '\n        <div class="review-row stagger">\n' + "\n".join(cards) + "\n        </div>"
 
