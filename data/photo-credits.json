@@ -1,0 +1,139 @@
+{
+ "credits": [
+  {
+   "file": "card-high-tensile",
+   "use": "category card",
+   "title": "Screw Head - Hex External with round base.jpg",
+   "artist": "Raimond Spekking",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Screw_Head_-_Hex_External_with_round_base.jpg",
+   "changes": "background removed, colour graded, placed on a dark background, resized"
+  },
+  {
+   "file": "card-bolts",
+   "use": "category card",
+   "title": "Bolt nut (retouch).jpg",
+   "artist": "Obviously (original autohor)",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Bolt_nut_(retouch).jpg",
+   "changes": "background removed, colour graded, placed on a dark background, resized"
+  },
+  {
+   "file": "card-nuts",
+   "use": "category card",
+   "title": "Hex nut.JPG",
+   "artist": "Plbcr",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Hex_nut.JPG",
+   "changes": "background removed, colour graded, placed on a dark background, resized"
+  },
+  {
+   "file": "card-washers",
+   "use": "category card",
+   "title": "Unterlegscheiben, Mini-Skyline -- 2020 -- 3875.jpg",
+   "artist": "Dietmar Rabich",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Unterlegscheiben,_Mini-Skyline_--_2020_--_3875.jpg",
+   "changes": "background removed, converted to black and white, colour graded, placed on a dark background, resized"
+  },
+  {
+   "file": "card-screws",
+   "use": "category card",
+   "title": "Screw (39610901175).jpg",
+   "artist": "Judy Gallagher",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Screw_(39610901175).jpg",
+   "changes": "background removed, colour graded, placed on a dark background, resized"
+  },
+  {
+   "file": "card-threaded-bar",
+   "use": "category card",
+   "title": "Close up on threaded rod.jpg",
+   "artist": "Photographer is Johnalden at en.wikipedia",
+   "license": "CC BY-SA 3.0",
+   "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+   "page": "https://commons.wikimedia.org/wiki/File:Close_up_on_threaded_rod.jpg",
+   "changes": "background removed, rotated, colour graded, placed on a dark background, resized"
+  },
+  {
+   "file": "card-anchors-tools",
+   "use": "category card",
+   "title": "Concrete drill bit.JPG",
+   "artist": "Kszapsza",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Concrete_drill_bit.JPG",
+   "changes": "background removed, colour graded, placed on a dark background, resized"
+  },
+  {
+   "file": "card-gloves",
+   "use": "category card",
+   "title": "Chainsaw gloves.JPG",
+   "artist": "Andy Dingley",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Chainsaw_gloves.JPG",
+   "changes": "background removed, colour graded, placed on a dark background, resized"
+  },
+  {
+   "file": "hero",
+   "use": "photo",
+   "title": "Schrauben, Muttern und Unterlegscheiben -- 2020 -- 4150.jpg",
+   "artist": "Dietmar Rabich",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Schrauben,_Muttern_und_Unterlegscheiben_--_2020_--_4150.jpg",
+   "changes": "cropped, colour graded, resized"
+  },
+  {
+   "file": "about-box",
+   "use": "photo",
+   "title": "Bolts and nuts in the box.jpg",
+   "artist": "I would appreciate being notified if you use my work outside Wikimedia.\nDo not copy this image illegally by ignoring the terms of the license below, as it is not in the public domain. If you would like special permission to use, license, or purchase the image please contact me to negotiate terms.\n\nMore of my work can be found in my personal gallery.",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Bolts_and_nuts_in_the_box.jpg",
+   "changes": "cropped, colour graded, resized"
+  },
+  {
+   "file": "about-dark",
+   "use": "photo",
+   "title": "Sechskantschrauben -- 2020 -- 3985-8 (bw).jpg",
+   "artist": "Dietmar Rabich",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Sechskantschrauben_--_2020_--_3985-8_(bw).jpg",
+   "changes": "cropped, colour graded, resized"
+  },
+  {
+   "file": "about-pile",
+   "use": "photo",
+   "title": "Screws, Nuts, Bolts and Threads.jpg",
+   "artist": "Tudor Barker",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Screws,_Nuts,_Bolts_and_Threads.jpg",
+   "changes": "cropped, colour graded, resized"
+  }
+ ],
+ "alts": {
+  "card-high-tensile": "High-tensile flange bolt",
+  "card-bolts": "Hex bolt with hex nut",
+  "card-nuts": "Steel hex nut",
+  "card-washers": "Stacks of flat steel washers",
+  "card-screws": "Allen socket head cap screw",
+  "card-threaded-bar": "Threaded bar",
+  "card-anchors-tools": "Masonry drill bit",
+  "card-gloves": "Work gloves",
+  "hero": "Bolts and nuts standing on a dark reflective surface",
+  "hero-m": "Bolts and nuts standing on a dark reflective surface",
+  "about-box": "Wooden box of bolts and nuts",
+  "about-dark": "Bolts standing on a dark reflective surface",
+  "about-pile": "Pile of screws, bolts and nuts"
+ }
+}

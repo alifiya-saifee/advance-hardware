@@ -1,0 +1,29 @@
+icon,category_en,category_ar,name_en,name_ar,sizes,options,grades,check
+bolt,Bolts,براغي (بولت),Hex bolts,براغي سداسية,M6;M8;M10;M12;M14;M16;M20;M24,Black|أسود;Zinc plated|مطلي زنك;Stainless steel|ستانلس ستيل,,
+bolt,Bolts,براغي (بولت),Bolt and nut sets,براغي مع صواميل,M6;M8;M10;M12;M14;M16;M20;M24,Black|أسود;Zinc plated|مطلي زنك;Stainless steel|ستانلس ستيل,,
+bolt,Bolts,براغي (بولت),Allen bolts (socket head),براغي ألن,M3;M4;M5;M6;M8;M10;M12;M16;M20,Black|أسود;Zinc plated|مطلي زنك;Stainless steel|ستانلس ستيل,,
+bolt,High-tensile bolts,براغي عالية الشد,High-tensile hex bolts,براغي سداسية عالية الشد,M6;M8;M10;M12;M14;M16;M20;M24,Black|أسود;Zinc plated|مطلي زنك,8.8;10.9;12.9,
+screw,Screws,سكرو,CSK Allen screws (countersunk),سكرو ألن غاطس (CSK),M3;M4;M5;M6;M8;M10;M12,Black|أسود;Zinc plated|مطلي زنك;Stainless steel|ستانلس ستيل,,
+screw,Screws,سكرو,Grub screws,سكرو جراب (بدون رأس),M3;M4;M5;M6;M8;M10;M12,Black|أسود;Stainless steel|ستانلس ستيل,,
+screw,Screws,سكرو,Screws,سكرو,,Zinc plated|مطلي زنك;Stainless steel|ستانلس ستيل,,
+nut,Nuts,صواميل,Hex nuts,صواميل سداسية,M3;M4;M5;M6;M8;M10;M12;M14;M16;M20;M24,Black|أسود;Zinc plated|مطلي زنك;Stainless steel|ستانلس ستيل,,
+nut,Nuts,صواميل,Lock nuts,صواميل قفل (لوك نت),M4;M5;M6;M8;M10;M12;M16;M20,Zinc plated|مطلي زنك;Stainless steel|ستانلس ستيل,,
+nut,Nuts,صواميل,Other nut types,صواميل أنواع أخرى,,,,
+washer,Washers,وردات,Flat washers,وردات مسطحة,M3;M4;M5;M6;M8;M10;M12;M14;M16;M20;M24,Zinc plated|مطلي زنك;Stainless steel|ستانلس ستيل,,
+washer,Washers,وردات,Spring washers,وردات زنبركية (سبرنق),M4;M5;M6;M8;M10;M12;M16;M20,Zinc plated|مطلي زنك;Stainless steel|ستانلس ستيل,,
+washer,Washers,وردات,Copper washers,وردات نحاس,M6;M8;M10;M12;M14;M16;M20,,,
+rod,Threaded bar,قضبان مسننة,Threaded bar,قضيب مسنن (ثريدد بار),M6;M8;M10;M12;M16;M20;M24,Zinc plated|مطلي زنك;Stainless steel|ستانلس ستيل,,
+glove,Gloves and safety,قفازات وسلامة,Work gloves,قفازات عمل,S;M;L;XL,Cotton|قطن;Nitrile coated|مطلي نيتريل;Cut-resistant|مقاوم للقطع;Leather|جلد,,
+glove,Gloves and safety,قفازات وسلامة,Safety glasses,نظارات سلامة,,Clear|شفافة;Dark|داكنة,,check
+glove,Gloves and safety,قفازات وسلامة,Ear plugs,سدادات أذن,,,,check
+anchor,Anchors and fixings,براغي تثبيت وفيشر,Anchor bolts,براغي تثبيت (انكر بولت),M8;M10;M12;M16;M20,Zinc plated|مطلي زنك;Stainless steel|ستانلس ستيل,,check
+anchor,Anchors and fixings,براغي تثبيت وفيشر,Wall plugs,فيشر جدار,6 mm;8 mm;10 mm;12 mm,,,check
+anchor,Anchors and fixings,براغي تثبيت وفيشر,Rivets,مسامير برشام,3.2 mm;4 mm;4.8 mm,Aluminium|ألمنيوم;Stainless steel|ستانلس ستيل,,check
+tools,Tools and accessories,عدد وملحقات,Drill bits,لقم دريل,3 mm;4 mm;5 mm;6 mm;8 mm;10 mm;12 mm,HSS for metal|للمعادن HSS;Masonry|للخرسانة,,check
+tools,Tools and accessories,عدد وملحقات,Cutting and grinding discs,أقراص قص وجلخ,4.5 in;7 in;9 in;14 in,Cutting|قص;Grinding|جلخ,,check
+tools,Tools and accessories,عدد وملحقات,Allen key sets,طقم مفاتيح ألن,,,,check
+tools,Tools and accessories,عدد وملحقات,Spanners,مفاتيح ربط (سبانر),8 mm;10 mm;13 mm;17 mm;19 mm;24 mm,,,check
+tape,Shop supplies,مستلزمات,Cable ties,روابط كيبل,100 mm;200 mm;300 mm;400 mm,Black|أسود;White|أبيض,,check
+tape,Shop supplies,مستلزمات,Tape (PVC and masking),شريط لاصق (PVC وورقي),,PVC|بي في سي;Masking|ورقي,,check
+tape,Shop supplies,مستلزمات,Silicone sealant,سيليكون,,Clear|شفاف;White|أبيض;Black|أسود,,check
+tape,Shop supplies,مستلزمات,Spray lubricant,بخاخ تزييت,,,,check
