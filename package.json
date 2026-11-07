@@ -1,0 +1,15 @@
+{
+  "name": "advance-hardware-website",
+  "private": true,
+  "description": "Static site. On Render a Static Site needs none of this; this lets a Render Web Service serve the files.",
+  "scripts": {
+    "build": "echo static site, nothing to build",
+    "start": "serve . --listen tcp://0.0.0.0:${PORT:-3000} --no-clipboard"
+  },
+  "dependencies": {
+    "serve": "14.2.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
