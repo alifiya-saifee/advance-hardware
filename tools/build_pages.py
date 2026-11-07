@@ -262,7 +262,17 @@ def build_home():
         <div class="stock-grid stagger">
 {cards.replace('<article class="stock-card">', '<article class="stock-card reveal">')}
         </div>
-        <div class="after-grid"><a class="btn btn-secondary" href="products.html"><span data-i18n="see_all">See all products</span><i data-icon="arrow"></i></a></div>
+        <div class="more-card reveal">
+          <div>
+            <h3 class="h3" data-i18n="more_t">Many more items in the shop</h3>
+            <p data-i18n="more_d">This is only part of what we stock. Ask for any fastener, tool or hardware item and we'll tell you the price and availability.</p>
+          </div>
+          <div class="more-actions">
+            <a class="btn btn-wa wa-list-link" data-src="more-items" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="more_wa">Ask on WhatsApp</span></a>
+            <a class="btn btn-secondary call-link" href="tel:+971506789646"><i data-icon="phone"></i><span data-i18n="call">Call</span></a>
+            <a class="text-link" href="products.html"><span data-i18n="see_all">See all products</span><i data-icon="arrow"></i></a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -347,6 +357,13 @@ def build_products():
     </div>
     <section class="light">
       <div class="wrap">
+        <div class="more-note">
+          <p><strong data-i18n="prod_more_t">Not everything is listed here.</strong> <span data-i18n="prod_more_d">We show our main items only; the shop has many more items and sizes. Ask us.</span></p>
+          <div class="more-actions">
+            <a class="btn btn-wa btn-sm wa-list-link" data-src="products-more" href="https://wa.me/971506789646" target="_blank" rel="noopener"><i data-icon="wa"></i><span data-i18n="more_wa">Ask on WhatsApp</span></a>
+            <a class="btn btn-secondary btn-sm call-link" href="tel:+971506789646"><i data-icon="phone"></i><span data-i18n="call">Call</span></a>
+          </div>
+        </div>
         <div id="product-grid" class="product-grid"></div>
         <div class="note-bar" style="margin-bottom:64px">
           <strong data-i18n="prod_missing_t">Can't find an item?</strong>

@@ -516,3 +516,21 @@ html[lang="ar"] .footer-h { font-family: var(--f-ar); letter-spacing: 0; font-si
 /* photo credits: required by the photo licences, kept small and quiet */
 .site-footer .credits-link { display: inline-flex; min-height: 24px; margin-inline-start: 10px; font-size: 12px; color: #8f99a1; text-decoration: none; }
 .site-footer .credits-link:hover { color: var(--zinc); text-decoration: underline; }
+
+/* ---------- "many more items" ---------- */
+.more-card {
+  display: grid; gap: var(--s5); align-items: center; margin-top: var(--s6); padding: var(--s6);
+  background: var(--graphite); color: #fff; border-radius: var(--radius-lg); position: relative; isolation: isolate; overflow: hidden;
+}
+.more-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: var(--grain); opacity: .04; }
+.more-card .h3 { color: #fff; font-size: 28px; margin-bottom: var(--s2); }
+@media (min-width: 960px) { .more-card { grid-template-columns: 1fr auto; padding: var(--s6) var(--s7); } .more-card .h3 { font-size: 34px; } }
+html[lang="ar"] .more-card .h3 { font-size: 24px; }
+.more-card p { color: var(--zinc); margin: 0; }
+.more-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3); }
+.more-card .text-link { color: #fff; }
+.more-card .btn-secondary { color: #fff; border-color: rgba(255, 255, 255, .6); }
+@media (max-width: 479px) { .more-card .btn { width: 100%; } }
+.more-note { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s3) var(--s5);
+  margin-bottom: var(--s4); padding: var(--s4) var(--s5); background: var(--amber-soft); border: 1px solid #f1d9a6; border-radius: var(--radius-lg); }
+.more-note p { margin: 0; max-width: 70ch; }
