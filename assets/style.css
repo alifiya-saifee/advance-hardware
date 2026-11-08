@@ -471,7 +471,7 @@ html[dir="rtl"] .note-bar { border-radius: 8px 0 0 8px; }
 /* ---------- footer ---------- */
 .site-footer { background: var(--graphite); color: var(--zinc); padding: var(--s8) 0 var(--s6); border-top: 1px solid var(--iron); font-size: 15px; }
 .footer-grid { display: grid; gap: var(--s6); }
-@media (min-width: 860px) { .footer-grid { grid-template-columns: 1.5fr 1.2fr 1.2fr .8fr; } }
+@media (min-width: 860px) { .footer-grid { grid-template-columns: 1.6fr 1.2fr .8fr; } }
 .footer-brand .logo { margin-bottom: var(--s4); }
 .footer-h { font: 500 13px/1 var(--f-mono); letter-spacing: .18em; text-transform: uppercase; color: #fff; margin: 0 0 var(--s4); }
 html[lang="ar"] .footer-h { font-family: var(--f-ar); letter-spacing: 0; font-size: 15px; }
@@ -544,3 +544,14 @@ html[lang="ar"] .more-card .h3 { font-size: 24px; }
 .footer-social a { gap: 8px; min-height: 44px !important; color: #e8ebed; }
 .footer-social a:hover { color: var(--amber); }
 .footer-social .icon { width: 22px; height: 22px; color: var(--amber); }
+
+/* footer contact: one WhatsApp button + today's status; full hours/phones live on the Visit section and Contact page */
+.footer-contact .btn { margin-bottom: var(--s3); }
+.footer-status { font-size: 15px; }
+
+/* social rows in Visit / Contact */
+.social-list { display: grid; gap: 2px; }
+.social-row { display: flex; align-items: center; gap: 10px; min-height: 44px; color: #fff; text-decoration: none; }
+.social-row .icon { width: 22px; height: 22px; color: var(--amber); }
+.social-row .handle { margin-inline-start: auto; color: var(--zinc); font-size: 15px; }
+.social-row:hover span:first-of-type { color: var(--amber); }

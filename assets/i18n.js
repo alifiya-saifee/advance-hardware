@@ -175,6 +175,8 @@ window.I18N = {
     contact_directions: "Get directions",
 
     footer_pages: "Pages",
+    follow_us: "Follow us",
+    footer_more: "All hours, phones & directions",
     footer_rights: "All rights reserved.",
     ph_photo: "Photo coming soon",
     tagline: "Fasteners · Sharjah · Since 1996",
@@ -425,6 +427,8 @@ window.I18N = {
     contact_directions: "الاتجاهات",
 
     footer_pages: "الصفحات",
+    follow_us: "تابعونا",
+    footer_more: "كل المواعيد والأرقام والاتجاهات",
     footer_rights: "جميع الحقوق محفوظة.",
     ph_photo: "الصورة قريباً",
     tagline: "براغي · الشارقة · منذ 1996",

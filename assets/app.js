@@ -216,14 +216,11 @@ function renderChrome() {
         <p data-i18n="contact_address"></p>
         <div class="footer-social">${SITE.social.map((s) => `<a href="${s.url}" target="_blank" rel="noopener" aria-label="${s.label}">${icon(s.key)}<span>${s.key === "instagram" ? "@advancehardwareuae" : s.label}</span></a>`).join("")}</div>
       </div>
-      <div>
-        <h2 class="footer-h" data-i18n="contact_phone_t"></h2>
-        ${SITE.phones.map((p) => `<p class="footer-phone"><span class="lbl" data-i18n="${p.key}"></span> <a href="tel:${p.tel}" dir="ltr" class="mono">${p.label}</a></p>`).join("")}
-        <p><a class="wa-list-link" data-src="footer" href="#" target="_blank" rel="noopener" data-i18n="wa_short"></a></p>
-      </div>
-      <div>
-        <h2 class="footer-h" data-i18n="contact_hours_t"></h2>
-        <div class="footer-hours"></div>
+      <div class="footer-contact">
+        <h2 class="footer-h" data-i18n="nav_contact"></h2>
+        <a class="btn btn-wa btn-sm wa-list-link" data-src="footer" href="#" target="_blank" rel="noopener">${icon("wa")}<span dir="ltr">${SITE.phones[1].label}</span></a>
+        <p class="open-status footer-status"></p>
+        <p><a class="text-link" href="contact.html"><span data-i18n="footer_more"></span>${icon("arrow", "icon flip")}</a></p>
       </div>
       <div>
         <h2 class="footer-h" data-i18n="footer_pages"></h2>
@@ -308,6 +305,7 @@ function applyLang() {
   document.querySelectorAll(".call-link").forEach((a) => { a.href = `tel:${SITE.callTel}`; });
   updateHours();
   renderPhones();
+  renderSocial();
   renderList();
   document.dispatchEvent(new Event("langchange"));
 }
@@ -323,6 +321,12 @@ function updateHours() {
   document.querySelectorAll(".open-status").forEach((el) => {
     el.innerHTML = `<span class="dot"></span>${esc(st.text)}`;
     el.classList.toggle("is-open", st.open);
+  });
+}
+
+function renderSocial() {
+  document.querySelectorAll(".social-list").forEach((box) => {
+    box.innerHTML = SITE.social.map((s) => `<a class="social-row" href="${s.url}" target="_blank" rel="noopener">${icon(s.key)}<span>${s.label}</span><span class="handle" dir="ltr">${s.key === "instagram" ? "@advancehardwareuae" : "Advance Hardware LLC"}</span></a>`).join("");
   });
 }
 
