@@ -96,7 +96,7 @@ def page_head(eyebrow_key, eyebrow, h_key, h, p_key, p):
 
 # ---------------- home ----------------
 CARDS = [  # slug (products.html#), image stem, title key, title, spec key, spec, alt key
-    ("high-tensile-bolts", "high-tensile", "cat_hightensile", "High-tensile bolts", "spec_hightensile", "Grade 8.8 · 10.9 · 12.9", "alt_high_tensile"),
+    ("high-tensile-bolts", "high-tensile", "cat_hightensile", "High-tensile bolts", "spec_hightensile", "All grades · 4.6 to 12.9", "alt_high_tensile"),
     ("bolts", "bolts", "cat_bolts", "Bolts", "spec_bolts", "Hex · Socket · SS bolt + nut", "alt_bolts"),
     ("nuts", "nuts", "cat_nuts", "Nuts", "spec_nuts", "Hex · Lock · Other types", "alt_nuts"),
     ("washers", "washers", "cat_washers", "Washers", "spec_washers", "Flat · Spring · Copper", "alt_washers"),
@@ -140,7 +140,7 @@ def grade(num, tensile, yld, dk, desc, mk, more):
 
 HOME_LD = '''  <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "HardwareStore", "name": "Advance Hardware LLC", "alternateName": ["Advance Hardware", "أدفانس هاردوير"],
-   "foundingDate": "1996", "description": "Fastener specialist in Sharjah Industrial Area 2: high-tensile bolts 8.8, 10.9 and 12.9, nuts, screws, washers, threaded bar and gloves.",
+   "foundingDate": "1996", "description": "Fastener specialist in Sharjah Industrial Area 2: bolts in all sizes and grades (4.6 to 12.9), nuts, screws, washers, threaded bar and gloves.",
    "telephone": "+971506789646", "image": "media/og.jpg",
    "address": {"@type": "PostalAddress", "streetAddress": "Shop No. 2, near ADCB Bank, J & P Road, Industrial Area 2", "addressLocality": "Sharjah", "addressCountry": "AE"},
    "areaServed": ["Sharjah", "Dubai"], "knowsLanguage": ["ar", "en", "hi", "ur"],
@@ -221,7 +221,7 @@ def build_home():
         grade("12.9", 1200, 1080, "g129_d", "The strongest common grade: Allen bolts, dies, engines and high-stress parts.", "g129_more", "Allen bolts, moulds and dies, engine and gearbox parts. In stock M6–M24."),
     ])
     html = head("Advance Hardware | Bolts, nuts and fasteners in Sharjah since 1996",
-                "Advance Hardware, Industrial Area 2, Sharjah: high-tensile bolts (8.8, 10.9, 12.9), nuts, screws, washers, threaded bar and gloves from stock since 1996. Send your list on WhatsApp for a quote in minutes. Same-day delivery in Sharjah and Dubai.",
+                "Advance Hardware, Industrial Area 2, Sharjah: bolts in all sizes and grades (4.6 to 12.9), nuts, screws, washers, threaded bar and gloves from stock since 1996. Send your list on WhatsApp for a quote in minutes. Same-day delivery in Sharjah and Dubai.",
                 build_home_ld()) + "\n" + body_open("home", cls="has-hero") + f'''
     <section class="hero dark">
       <div class="hero-media">{hero_pic}</div>
@@ -302,7 +302,7 @@ def build_home():
         <div class="section-head reveal"><h2 class="h2" data-i18n="supply_title">Who we supply</h2></div>
         <div class="three stagger">
           <div class="panel reveal"><span class="icon-tile"><i data-icon="anchor"></i></span><h3 class="h3" data-i18n="sup_con_t">Contractors</h3><p data-i18n="sup_con_d">Bolts, threaded bar and anchors for site work, with same-day delivery and monthly statements.</p><p class="proof-line small" data-i18n="sup_con_p">Monthly statements · same-day delivery</p><a class="text-link" href="trade.html"><span data-i18n="sup_con_link">Open a trade account</span><i data-icon="arrow"></i></a></div>
-          <div class="panel reveal"><span class="icon-tile"><i data-icon="tools"></i></span><h3 class="h3" data-i18n="sup_work_t">Workshops and fabricators</h3><p data-i18n="sup_work_d">High-tensile bolts, Allen and grub screws in the sizes you use every day, ready on the shelf.</p><p class="proof-line small" data-i18n="sup_work_p">Grades 8.8 · 10.9 · 12.9 in stock</p><a class="text-link" href="products.html#high-tensile-bolts"><span data-i18n="sup_work_link">See high-tensile bolts</span><i data-icon="arrow"></i></a></div>
+          <div class="panel reveal"><span class="icon-tile"><i data-icon="tools"></i></span><h3 class="h3" data-i18n="sup_work_t">Workshops and fabricators</h3><p data-i18n="sup_work_d">High-tensile bolts, Allen and grub screws in the sizes you use every day, ready on the shelf.</p><p class="proof-line small" data-i18n="sup_work_p">All sizes and grades in stock</p><a class="text-link" href="products.html#high-tensile-bolts"><span data-i18n="sup_work_link">See high-tensile bolts</span><i data-icon="arrow"></i></a></div>
           <div class="panel reveal"><span class="icon-tile"><i data-icon="shop"></i></span><h3 class="h3" data-i18n="sup_shop_t">Hardware shops</h3><p data-i18n="sup_shop_d">Wholesale prices on the items you resell. Fill gaps fast when your own stock runs out.</p><p class="proof-line small" data-i18n="sup_shop_p">Wholesale prices · no minimum order</p><a class="text-link" href="trade.html"><span data-i18n="sup_shop_link2">Get wholesale prices</span><i data-icon="arrow"></i></a></div>
         </div>
       </div>
@@ -354,7 +354,7 @@ def build_home():
 
 def build_products():
     html = head("Products | Advance Hardware: bolts, nuts and fasteners in Sharjah",
-                "High-tensile bolts 8.8, 10.9 and 12.9, hex and Allen bolts, CSK Allen and grub screws, hex and lock nuts, flat, spring and copper washers, threaded bar and work gloves from stock in Sharjah Industrial Area 2. Build your list and send it on WhatsApp.") + "\n" + body_open("products", "prod_title") + "\n" + page_head("stock_kicker", "The range", "prod_title", "Products", "prod_text", "Choose a size and finish, add items to your list, then send the list on WhatsApp. Quote in minutes.") + '''
+                "Bolts in all grades from 4.6 to 12.9, high-tensile 8.8, 10.9 and 12.9, hex and Allen bolts, CSK Allen and grub screws, hex and lock nuts, flat, spring and copper washers, threaded bar and work gloves from stock in Sharjah Industrial Area 2. Build your list and send it on WhatsApp.") + "\n" + body_open("products", "prod_title") + "\n" + page_head("stock_kicker", "The range", "prod_title", "Products", "prod_text", "Choose a size and finish, add items to your list, then send the list on WhatsApp. Quote in minutes.") + '''
     <div class="toolbar">
       <div class="wrap toolbar-inner">
         <input id="product-search" class="search" type="search" autocomplete="off" data-i18n-ph="prod_search" placeholder="Search: bolt, nut, M12, 10.9, gloves…" aria-label="Search products">
@@ -432,7 +432,7 @@ def build_about():
       <div class="wrap split">
         <div class="prose reveal">
           <p data-i18n="about_p1">Advance Hardware opened in Sharjah's Industrial Area 2 in 1996. Since then we have supplied contractors, workshops, fabricators and other hardware shops with bolts, nuts, screws, washers and threaded bar.</p>
-          <p data-i18n="about_p2">We keep high-tensile bolts in grades 8.8, 10.9 and 12.9, the hard-to-find sizes, and the everyday supplies a job runs out of, like gloves.</p>
+          <p data-i18n="about_p2">We keep bolts in every common grade, from 4.6 up to high-tensile 8.8, 10.9 and 12.9, in all sizes, including the hard-to-find ones, and the everyday supplies a job runs out of, like gloves.</p>
           <p data-i18n="about_p3">Our team speaks Arabic, English, Hindi and Urdu, so you can order the way you talk. Send a list or a photo on WhatsApp and we reply with a quote in minutes.</p>
           <a class="btn btn-dark" href="contact.html"><i data-icon="pin"></i><span data-i18n="about_cta">Visit the shop</span></a>
         </div>
