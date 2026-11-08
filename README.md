@@ -1,4 +1,8 @@
+<p align="center"><img src="media/brand/seal-480.png" width="160" alt="Advance Hardware, Sharjah, since 1996"></p>
+
 # Advance Hardware website
+
+**Live:** https://advance-hardware.onrender.com
 
 English and Arabic, works on phones, no monthly fees, no build step.
 Customers pick items, build a list and send it to you on WhatsApp. No prices on the site; every item says "Ask for price".
