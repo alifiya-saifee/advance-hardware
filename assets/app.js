@@ -10,6 +10,10 @@ const SITE = {
     { key: "ph_sales", label: "055 214 4351", tel: "+971552144351" },
   ],
   callTel: "+971506789646", // the "Call" buttons
+  // Social accounts (add Facebook / LinkedIn here once created)
+  social: [
+    { key: "instagram", label: "Instagram", url: "https://www.instagram.com/advancehardwareuae/" },
+  ],
   mapQuery: "Advance Hardware LLC, Industrial Area 2, Sharjah",
   geo: { lat: 25.3197832, lng: 55.4054299 },          // the shop's pin on Google Maps
   googleUrl: "https://maps.google.com/?cid=1551431354454962109", // the Google Business Profile (reviews, photos)
@@ -83,6 +87,7 @@ const ICONS = {
   pin: '<path d="M24 44s14-13 14-24a14 14 0 0 0-28 0c0 11 14 24 14 24z"/><circle cx="24" cy="20" r="5"/>',
   phone: '<path d="M14 6l6 9-4 4a24 24 0 0 0 13 13l4-4 9 6-3 7C21 41 7 27 7 9z"/>',
   camera: '<rect x="5" y="13" width="38" height="27" rx="4"/><circle cx="24" cy="26" r="7"/><path d="M17 13l3-5h8l3 5"/>',
+  instagram: '<rect x="7" y="7" width="34" height="34" rx="10"/><circle cx="24" cy="24" r="8"/><circle cx="34.5" cy="13.5" r="1.6" fill="currentColor"/>',
   copy: '<rect x="15" y="15" width="25" height="25" rx="3"/><path d="M33 15V9a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h6"/>',
   shop: '<path d="M6 18l3-10h30l3 10"/><path d="M6 18h36v4a6 6 0 0 1-12 0 6 6 0 0 1-12 0 6 6 0 0 1-12 0z"/><path d="M9 26v16h30V26"/><path d="M20 42V32h8v10"/>',
 };
@@ -207,6 +212,7 @@ function renderChrome() {
         <a class="footer-seal" href="index.html"><picture><source type="image/webp" srcset="media/brand/seal-240.webp 1x, media/brand/seal-480.webp 2x"><img src="media/brand/seal-240.png" srcset="media/brand/seal-480.png 2x" width="112" height="112" alt="Advance Hardware, Sharjah, since 1996" loading="lazy"></picture></a>
         <p><strong data-i18n="brand_full"></strong></p>
         <p data-i18n="contact_address"></p>
+        <div class="footer-social">${SITE.social.map((s) => `<a href="${s.url}" target="_blank" rel="noopener" aria-label="${s.label}: @advancehardwareuae">${icon(s.key)}<span>@advancehardwareuae</span></a>`).join("")}</div>
       </div>
       <div>
         <h2 class="footer-h" data-i18n="contact_phone_t"></h2>

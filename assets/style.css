@@ -538,3 +538,9 @@ html[lang="ar"] .more-card .h3 { font-size: 24px; }
 /* footer seal */
 .footer-seal { display: inline-block; margin-bottom: var(--s4); min-height: 0 !important; }
 .footer-seal img { width: 112px; height: 112px; }
+
+/* footer social links */
+.footer-social { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s3); }
+.footer-social a { gap: 8px; min-height: 44px !important; color: #e8ebed; }
+.footer-social a:hover { color: var(--amber); }
+.footer-social .icon { width: 22px; height: 22px; color: var(--amber); }
