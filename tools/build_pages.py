@@ -29,6 +29,11 @@ def hours_sentence():
 FONTS = "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
 SITE_URL = ""  # e.g. "https://advancehardware.ae" once online (used for the share image)
 
+import hashlib
+def ver(path):
+    """Short content hash, so browsers re-download a file whenever it changes."""
+    return hashlib.sha1((ROOT / path).read_bytes()).hexdigest()[:8]
+
 def head(title, desc, extra=""):
     return f'''<!doctype html>
 <html lang="en" dir="ltr">
@@ -55,11 +60,11 @@ def head(title, desc, extra=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="{FONTS}" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="{FONTS}"></noscript>
-{extra}  <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/hours.js" defer></script>
-  <script src="assets/i18n.js" defer></script>
-  <script src="assets/products.js" defer></script>
-  <script src="assets/app.js" defer></script>
+{extra}  <link rel="stylesheet" href="assets/style.css?v={ver('assets/style.css')}">
+  <script src="assets/hours.js?v={ver('assets/hours.js')}" defer></script>
+  <script src="assets/i18n.js?v={ver('assets/i18n.js')}" defer></script>
+  <script src="assets/products.js?v={ver('assets/products.js')}" defer></script>
+  <script src="assets/app.js?v={ver('assets/app.js')}" defer></script>
 </head>'''
 
 def body_open(page, title_key="", cls=""):
