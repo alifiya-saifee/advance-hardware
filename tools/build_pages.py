@@ -144,7 +144,7 @@ HOME_LD = '''  <script type="application/ld+json">
    "telephone": "+971506789646", "image": "media/og.jpg",
    "address": {"@type": "PostalAddress", "streetAddress": "Shop No. 2, near ADCB Bank, J & P Road, Industrial Area 2", "addressLocality": "Sharjah", "addressCountry": "AE"},
    "areaServed": ["Sharjah", "Dubai"], "knowsLanguage": ["ar", "en", "hi", "ur"],
-   "sameAs": ["https://maps.google.com/?cid=1551431354454962109", "https://www.instagram.com/advancehardwareuae/"], "hasMap": "https://maps.google.com/?cid=1551431354454962109",
+   "sameAs": ["https://maps.google.com/?cid=1551431354454962109", "https://www.instagram.com/advancehardwareuae/", "https://www.facebook.com/profile.php?id=61596321422041"], "hasMap": "https://maps.google.com/?cid=1551431354454962109",
    "geo": {"@type": "GeoCoordinates", "latitude": 25.3197832, "longitude": 55.4054299},
    "openingHoursSpecification": OPENING_HOURS}
   </script>
